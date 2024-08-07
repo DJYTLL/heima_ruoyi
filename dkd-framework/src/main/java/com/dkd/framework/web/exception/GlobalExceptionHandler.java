@@ -3,6 +3,7 @@ package com.dkd.framework.web.exception;
 import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.BindException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -16,6 +17,8 @@ import com.dkd.common.core.domain.AjaxResult;
 import com.dkd.common.exception.DemoModeException;
 import com.dkd.common.exception.ServiceException;
 import com.dkd.common.utils.StringUtils;
+
+import java.sql.SQLIntegrityConstraintViolationException;
 
 /**
  * 全局异常处理器
@@ -135,4 +138,25 @@ public class GlobalExceptionHandler
     {
         return AjaxResult.error("演示模式，不允许操作");
     }
+
+    /**
+     * 外键约束异常
+     */
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public AjaxResult handleSQLIntegrityConstraintViolationException(DataIntegrityViolationException e, HttpServletRequest request) {
+        String requestURI = request.getRequestURI();
+        if (e.getMessage().contains("Cannot delete or update a parent row: a foreign key constraint fails")) {
+            log.error("请求地址'{}',发生外键约束异常.", requestURI, e);
+            return AjaxResult.error("操作失败：存在外键约束，无法删除或更新相关数据。");
+        }
+        //返回数据完整性约束违反
+        log.error("请求地址'{}',发生数据完整性约束异常.", requestURI, e);
+        return AjaxResult.error("操作失败：数据完整性约束违反。");
+    }
+
+
+
+
 }
+
+
