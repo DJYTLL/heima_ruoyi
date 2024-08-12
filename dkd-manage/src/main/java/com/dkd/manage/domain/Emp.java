@@ -9,7 +9,7 @@ import com.dkd.common.core.domain.BaseEntity;
  * 人员列表对象 tb_emp
  * 
  * @author xuan
- * @date 2024-08-06
+ * @date 2024-08-12
  */
 public class Emp extends BaseEntity
 {

@@ -25,10 +25,10 @@ import com.dkd.common.core.page.TableDataInfo;
  * 人员列表Controller
  * 
  * @author xuan
- * @date 2024-08-06
+ * @date 2024-08-12
  */
 @RestController
-@RequestMapping("/manage /emp")
+@RequestMapping("/manage/emp")
 public class EmpController extends BaseController
 {
     @Autowired
@@ -37,7 +37,7 @@ public class EmpController extends BaseController
     /**
      * 查询人员列表列表
      */
-    @PreAuthorize("@ss.hasPermi('manage :emp:list')")
+    @PreAuthorize("@ss.hasPermi('manage:emp:list')")
     @GetMapping("/list")
     public TableDataInfo list(Emp emp)
     {
@@ -49,7 +49,7 @@ public class EmpController extends BaseController
     /**
      * 导出人员列表列表
      */
-    @PreAuthorize("@ss.hasPermi('manage :emp:export')")
+    @PreAuthorize("@ss.hasPermi('manage:emp:export')")
     @Log(title = "人员列表", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, Emp emp)
@@ -62,7 +62,7 @@ public class EmpController extends BaseController
     /**
      * 获取人员列表详细信息
      */
-    @PreAuthorize("@ss.hasPermi('manage :emp:query')")
+    @PreAuthorize("@ss.hasPermi('manage:emp:query')")
     @GetMapping(value = "/{id}")
     public AjaxResult getInfo(@PathVariable("id") Long id)
     {
@@ -72,7 +72,7 @@ public class EmpController extends BaseController
     /**
      * 新增人员列表
      */
-    @PreAuthorize("@ss.hasPermi('manage :emp:add')")
+    @PreAuthorize("@ss.hasPermi('manage:emp:add')")
     @Log(title = "人员列表", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody Emp emp)
@@ -83,7 +83,7 @@ public class EmpController extends BaseController
     /**
      * 修改人员列表
      */
-    @PreAuthorize("@ss.hasPermi('manage :emp:edit')")
+    @PreAuthorize("@ss.hasPermi('manage:emp:edit')")
     @Log(title = "人员列表", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody Emp emp)
@@ -94,7 +94,7 @@ public class EmpController extends BaseController
     /**
      * 删除人员列表
      */
-    @PreAuthorize("@ss.hasPermi('manage :emp:remove')")
+    @PreAuthorize("@ss.hasPermi('manage:emp:remove')")
     @Log(title = "人员列表", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{ids}")
     public AjaxResult remove(@PathVariable Long[] ids)

@@ -25,10 +25,10 @@ import com.dkd.common.core.page.TableDataInfo;
  * 工单角色Controller
  * 
  * @author xuan
- * @date 2024-08-06
+ * @date 2024-08-12
  */
 @RestController
-@RequestMapping("/manage /role")
+@RequestMapping("/manage/role")
 public class RoleController extends BaseController
 {
     @Autowired
@@ -37,7 +37,7 @@ public class RoleController extends BaseController
     /**
      * 查询工单角色列表
      */
-    @PreAuthorize("@ss.hasPermi('manage :role:list')")
+    @PreAuthorize("@ss.hasPermi('manage:role:list')")
     @GetMapping("/list")
     public TableDataInfo list(Role role)
     {
@@ -49,7 +49,7 @@ public class RoleController extends BaseController
     /**
      * 导出工单角色列表
      */
-    @PreAuthorize("@ss.hasPermi('manage :role:export')")
+    @PreAuthorize("@ss.hasPermi('manage:role:export')")
     @Log(title = "工单角色", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
     public void export(HttpServletResponse response, Role role)
@@ -62,7 +62,7 @@ public class RoleController extends BaseController
     /**
      * 获取工单角色详细信息
      */
-    @PreAuthorize("@ss.hasPermi('manage :role:query')")
+    @PreAuthorize("@ss.hasPermi('manage:role:query')")
     @GetMapping(value = "/{roleId}")
     public AjaxResult getInfo(@PathVariable("roleId") Long roleId)
     {
@@ -72,7 +72,7 @@ public class RoleController extends BaseController
     /**
      * 新增工单角色
      */
-    @PreAuthorize("@ss.hasPermi('manage :role:add')")
+    @PreAuthorize("@ss.hasPermi('manage:role:add')")
     @Log(title = "工单角色", businessType = BusinessType.INSERT)
     @PostMapping
     public AjaxResult add(@RequestBody Role role)
@@ -83,7 +83,7 @@ public class RoleController extends BaseController
     /**
      * 修改工单角色
      */
-    @PreAuthorize("@ss.hasPermi('manage :role:edit')")
+    @PreAuthorize("@ss.hasPermi('manage:role:edit')")
     @Log(title = "工单角色", businessType = BusinessType.UPDATE)
     @PutMapping
     public AjaxResult edit(@RequestBody Role role)
@@ -94,7 +94,7 @@ public class RoleController extends BaseController
     /**
      * 删除工单角色
      */
-    @PreAuthorize("@ss.hasPermi('manage :role:remove')")
+    @PreAuthorize("@ss.hasPermi('manage:role:remove')")
     @Log(title = "工单角色", businessType = BusinessType.DELETE)
 	@DeleteMapping("/{roleIds}")
     public AjaxResult remove(@PathVariable Long[] roleIds)
